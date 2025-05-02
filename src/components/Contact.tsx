@@ -15,7 +15,8 @@ export default function ContactSection() {
       <BorderWrapper className="max-w-2xl w-full text-center">
         <h2 className="text-3xl font-bold mb-6 animate-text-pulse">Get In Touch</h2>
         <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-          Whether you're a recruiter, collaborator, or just curious — I'd love to hear from you!
+        Whether you&apos;re a recruiter, collaborator, or just curious — I&apos;d love to hear from you!
+
         </p>
 
         <a

@@ -15,7 +15,8 @@ export default function AboutSection() {
       <BorderWrapper className="max-w-3xl w-full text-center">
         <h2 className="text-3xl font-bold mb-6 animate-text-pulse">About Me</h2>
         <p className="text-gray-300 text-lg leading-relaxed animate-fadeIn delay-300">
-        I'm Jack Gregorski — a Computer Science major at Princeton with a minor in Finance. I’m passionate about full-stack development, machine learning, and building useful tools at the intersection of design and functionality. I’ve worked on everything from AI-generated video platforms to protein-small molecule interaction models.
+        I&apos;m Jack Gregorski — a Computer Science major at Princeton with a minor in Finance. I&apos;m passionate about full-stack development, machine learning, and building useful tools at the intersection of design and functionality. I&apos;ve worked on everything from AI-generated video platforms to protein-small molecule interaction models.
+
         </p>
         <div className="mt-10 text-left">
           <h3 className="text-xl font-semibold mb-4 text-white">Skills & Tools</h3>
