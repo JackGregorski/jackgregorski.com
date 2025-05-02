@@ -4,11 +4,11 @@ import type { Metadata } from 'next';
 
 
 
-export function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
+export function generateStaticParams(): { slug: string }[] {
+    return projects.map((project) => ({
+      slug: project.slug,
+    }));
+  }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
 
