@@ -2,9 +2,7 @@ import Link from 'next/link';
 import { projects } from '@/data/projects';
 import type { Metadata } from 'next';
 
-type Props = {
-  params: { slug: string };
-};
+
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -12,7 +10,8 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+
   const project = projects.find((p) => p.slug === params.slug);
   return {
     title: project?.title || 'Project',
