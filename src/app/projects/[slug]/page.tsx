@@ -2,21 +2,22 @@ import Link from 'next/link';
 import { projects } from '@/data/projects';
 import type { Metadata } from 'next';
 
-
-
-export function generateStaticParams(): { slug: string }[] {
-    return projects.map((project) => ({
-      slug: project.slug,
-    }));
-  }
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-
   const project = projects.find((p) => p.slug === params.slug);
   return {
     title: project?.title || 'Project',
   };
 }
+
+type Props = {
+  params: { slug: string };
+};
 
 export default function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === params.slug);
