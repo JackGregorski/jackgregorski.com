@@ -15,11 +15,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-type Props = {
-  params: { slug: string };
-};
-
-export default function ProjectPage({ params }: Props) {
+export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
