@@ -1,11 +1,7 @@
-import { type Metadata } from 'next'; // removed ResolvingMetadata
+import { type Metadata } from 'next';
 import { projects } from '@/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
-
-type ProjectPageProps = {
-  params: { slug: string };
-};
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -22,9 +18,7 @@ export async function generateMetadata(
   };
 }
 
-
-
-export default function ProjectPage({ params }: ProjectPageProps) {
+export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
