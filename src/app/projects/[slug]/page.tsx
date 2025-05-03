@@ -16,7 +16,6 @@ type Props = {
 
 export async function generateMetadata(
   { params }: Props,
-  _parent?: ResolvingMetadata
 ): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
   return {
