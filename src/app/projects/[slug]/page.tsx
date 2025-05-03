@@ -1,30 +1,26 @@
-import Link from 'next/link';
 import { projects } from '@/data/projects';
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export async function generateStaticParams(): Promise<{ params: { slug: string } }[]> {
+type Params = { slug: string };
+
+export async function generateStaticParams(): Promise<Array<{ params: Params }>> {
   return projects.map((project) => ({
     params: { slug: project.slug },
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const project = projects.find((p) => p.slug === params.slug);
+export async function generateMetadata(
+  props: { params: Params }
+): Promise<Metadata> {
+  const project = projects.find((p) => p.slug === props.params.slug);
   return {
-    title: project?.title || 'Project',
+    title: project?.title ?? 'Project',
   };
 }
 
-export default function ProjectPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default function ProjectPage({ params }: { params: Params }) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
