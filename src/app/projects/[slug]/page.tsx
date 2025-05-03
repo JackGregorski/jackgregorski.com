@@ -1,4 +1,4 @@
-import { type Metadata, type ResolvingMetadata } from 'next';
+import { type Metadata } from 'next'; // removed ResolvingMetadata
 import { projects } from '@/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,17 +13,15 @@ export async function generateStaticParams() {
   }));
 }
 
-//quick change
-
 export async function generateMetadata(
-  { params }: { params: { slug: string } },
-  _parent?: ResolvingMetadata
+  { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
   return {
     title: project?.title ?? 'Project',
   };
 }
+
 
 
 export default function ProjectPage({ params }: ProjectPageProps) {

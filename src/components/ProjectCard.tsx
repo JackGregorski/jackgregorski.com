@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import BorderWrapper from './BorderWrapper';
-
+import Image from 'next/image';
 export type Project = {
   slug: string;
   title: string;
@@ -16,7 +16,7 @@ export default function ProjectCard({ slug, title, description, image }: Project
       <BorderWrapper className="w-full flex flex-col justify-between">
         <div className="space-y-4 text-left">
           {image && (
-            <img
+            <Image
               src={image}
               alt={title}
               className="w-full h-48 object-cover rounded-md"
