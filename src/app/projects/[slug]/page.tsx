@@ -1,4 +1,4 @@
-import { type Metadata } from 'next';
+import { type Metadata, type ResolvingMetadata } from 'next';
 import { projects } from '@/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,12 +13,18 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  _parent?: ResolvingMetadata
+): Promise<Metadata> {
   const project = projects.find((p) => p.slug === params.slug);
   return {
     title: project?.title ?? 'Project',
   };
 }
+
 
 export default function ProjectPage({ params }: ProjectPageProps) {
   const project = projects.find((p) => p.slug === params.slug);
