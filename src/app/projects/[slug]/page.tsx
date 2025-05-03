@@ -3,13 +3,11 @@ import { projects } from '@/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Params = { slug: string };
-
 type ProjectPageProps = {
-  params: Params;
+  params: { slug: string };
 };
 
-export async function generateStaticParams(): Promise<Array<{ slug: string }>> {
+export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -36,7 +34,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           <h1 className="text-4xl font-bold mb-6 animate-text-pulse text-center">
             {project.title}
           </h1>
-
           {project.image && (
             <Image
               src={project.image}
@@ -46,11 +43,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               className="w-full h-auto rounded-lg mb-8 border border-gray-800"
             />
           )}
-
           <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
             {project.content}
           </p>
-
           {project.link && (
             <a
               href={project.link}
@@ -61,7 +56,6 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               Visit project →
             </a>
           )}
-
           <div className="mt-10 text-center">
             <Link href="/">
               <span className="inline-block text-sm text-gray-400 hover:text-white transition-colors underline underline-offset-4">
