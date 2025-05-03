@@ -1,29 +1,32 @@
 import Link from 'next/link';
 import { projects } from '@/data/projects';
-import type { Metadata} from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 
-interface PageParams {
-    params: { slug: string };
-  }
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const project = projects.find((p) => p.slug === params.slug);
+  return {
+    title: project?.title || 'Project',
+  };
+}
 
+export default function ProjectPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const project = projects.find((p) => p.slug === params.slug);
 
-  export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    return projects.map((project) => ({
-      slug: project.slug,
-    }));
-  }
-
-  export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
-    const project = projects.find((p) => p.slug === params.slug);
-    return {
-      title: project?.title || 'Project',
-    };
-  }
-
-  export default function ProjectPage({ params }: PageParams) {
-    const project = projects.find((p) => p.slug === params.slug);
   if (!project) {
     return <div className="text-white p-10">Project not found.</div>;
   }
