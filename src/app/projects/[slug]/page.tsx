@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { projects } from '@/data/projects';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata} from 'next';
 
 export async function generateStaticParams(): Promise<Props['params'][]> {
     return projects.map((project) => ({
