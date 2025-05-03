@@ -34,10 +34,10 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </h1>
           {project.image && (
             <Image
+              width={800}
+              height={400}
               src={project.image}
               alt={project.title}
-              width={800}
-              height={450}
               className="w-full h-auto rounded-lg mb-8 border border-gray-800"
             />
           )}

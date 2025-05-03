@@ -17,6 +17,8 @@ export default function ProjectCard({ slug, title, description, image }: Project
         <div className="space-y-4 text-left">
           {image && (
             <Image
+              width={400}
+              height={200}
               src={image}
               alt={title}
               className="w-full h-48 object-cover rounded-md"
