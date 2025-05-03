@@ -13,7 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-
+//quick change
 
 export async function generateMetadata(
   { params }: { params: { slug: string } },
