@@ -3,9 +3,9 @@ import { projects } from '@/data/projects';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
+export async function generateStaticParams(): Promise<{ params: { slug: string } }[]> {
   return projects.map((project) => ({
-    slug: project.slug,
+    params: { slug: project.slug },
   }));
 }
 
