@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import { projects } from '@/data/projects';
 import type { Metadata} from 'next';
+import Image from 'next/image';
+
+type Props = {
+    params: { slug: string };
+  };
+
 
 export async function generateStaticParams(): Promise<Props['params'][]> {
     return projects.map((project) => ({
@@ -10,9 +16,6 @@ export async function generateStaticParams(): Promise<Props['params'][]> {
 
 
 
-type Props = {
-  params: { slug: string };
-};
 
 export async function generateMetadata(
   { params }: Props,
@@ -40,9 +43,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </h1>
 
           {project.image && (
-            <img
+            <Image
               src={project.image}
               alt={project.title}
+              width={800}
+              height={450}
               className="w-full h-auto rounded-lg mb-8 border border-gray-800"
             />
           )}
