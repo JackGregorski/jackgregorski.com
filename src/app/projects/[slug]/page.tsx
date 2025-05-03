@@ -2,8 +2,6 @@ import { type Metadata } from 'next';
 import { projects } from '@/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
-export const dynamic = 'force-static';
-
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -12,22 +10,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { slug }: { slug: string }
 ): Promise<Metadata> {
-  const project = projects.find((p) => p.slug === params.slug);
+  const project = projects.find((p) => p.slug === slug);
   return {
     title: project?.title ?? 'Project',
   };
 }
 
-type ProjectPageParams = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function ProjectPage({ params }: ProjectPageParams) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return <div className="text-white p-10">Project not found.</div>;
